@@ -10,31 +10,34 @@ body {
   color: #e5e7eb;
 }
 
+/* 讓內容在大螢幕置中、小螢幕貼左右有內距 */
 .app-container {
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 960px;
+  margin: 24px auto 40px;
   padding: 0 16px 40px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 header h1 {
   margin: 0 0 8px;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 header p {
   margin: 0;
   color: #9ca3af;
+  font-size: 14px;
 }
 
+/* 表單區：桌機預設三欄（IP / Prefix / Button） */
 .form-section {
   background: #020617;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 18px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   border: 1px solid #1f2937;
   display: grid;
@@ -50,14 +53,14 @@ header p {
 }
 
 label {
-  font-size: 14px;
+  font-size: 13px;
   color: #9ca3af;
 }
 
 input[type="text"],
 input[type="number"] {
   padding: 8px 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #374151;
   background: #020617;
   color: #e5e7eb;
@@ -68,6 +71,7 @@ input::placeholder {
   color: #6b7280;
 }
 
+/* /24 的那個 "/" 樣式 */
 .prefix-wrapper {
   display: flex;
   align-items: center;
@@ -76,8 +80,10 @@ input::placeholder {
 
 .prefix-wrapper span {
   color: #9ca3af;
+  font-size: 14px;
 }
 
+/* 計算按鈕 */
 button#calcBtn {
   padding: 10px 18px;
   border-radius: 999px;
@@ -101,6 +107,7 @@ button#calcBtn:active {
   box-shadow: none;
 }
 
+/* 錯誤訊息 */
 .error-msg {
   grid-column: 1 / -1;
   margin: 0;
@@ -109,12 +116,13 @@ button#calcBtn:active {
   min-height: 16px;
 }
 
+/* 結果區 */
 .result-section {
   margin-top: 24px;
 }
 
 .result-section h2 {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-size: 20px;
 }
 
@@ -126,21 +134,21 @@ button#calcBtn:active {
 
 .card {
   background: #020617;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 14px 16px;
   border: 1px solid #1f2937;
 }
 
 .card h3 {
   margin: 0 0 6px;
-  font-size: 15px;
+  font-size: 14px;
   color: #9ca3af;
 }
 
 .card p {
   margin: 0;
   font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 14px;
+  font-size: 13px;
   word-break: break-all;
 }
 
@@ -148,13 +156,92 @@ button#calcBtn:active {
   display: none;
 }
 
-/* RWD */
+/* ========================= */
+/*       RWD 斷點            */
+/* ========================= */
+
+/* 平板：調小標題、讓版面稍微緊湊一點 */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 24px;
+  }
+
+  .app-container {
+    margin-top: 20px;
+  }
+
+  .form-section {
+    border-radius: 14px;
+  }
+}
+
+/* 手機 & 小平板：表單改成一欄、按鈕全寬、文字稍微放大 */
 @media (max-width: 768px) {
+  .app-container {
+    padding: 0 12px 32px;
+  }
+
+  header {
+    text-align: left;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  header p {
+    font-size: 13px;
+  }
+
   .form-section {
     grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 12px;
   }
 
   button#calcBtn {
     width: 100%;
+    justify-self: stretch;
+  }
+
+  .error-msg {
+    font-size: 12px;
+  }
+
+  .result-section h2 {
+    font-size: 18px;
+  }
+
+  .card h3 {
+    font-size: 13px;
+  }
+
+  .card p {
+    font-size: 12px;
+  }
+}
+
+/* 很小的手機（例如 360px 寬以下）再多放鬆一點字體與間距 */
+@media (max-width: 480px) {
+  .app-container {
+    margin-top: 16px;
+  }
+
+  .form-section {
+    padding: 14px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    font-size: 13px;
+  }
+
+  button#calcBtn {
+    font-size: 13px;
+    padding: 9px 14px;
   }
 }
